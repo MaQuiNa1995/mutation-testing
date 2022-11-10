@@ -4,8 +4,8 @@
 
 y un plugin a nuestro pom:
 
+(Se han omitido comentarios aclaratorios si quieres ver que hace cada línea de código <a href="https://github.com/MaQuiNa1995/mutation-testing/blob/master/pom.xml">pincha aqui</a> )
 ```
-<!-- mutation testing -->
 <plugin>
 	<groupId>org.pitest</groupId>
 	<artifactId>pitest-maven</artifactId>
@@ -17,18 +17,7 @@ y un plugin a nuestro pom:
 			<version>${pitest.junit5.plugin.version}</version>
 		</dependency>
 	</dependencies>
-	<!--
-		Podemos asignarle una serie de rutas o ficheros donde queremos que nuestros
-		test de mutación analicen tomando los unitarios como base
-		
-		En el caso de que no le indiquemos un targetclass
-		tomará la ruta de nuestro groupid
-	-->
 	<configuration>
-		<!--
-			Puedes poner mas de un targetclass tanto en ruta de carpeta
-			como en ruta absoluta de fichero 
-		-->
 		<targetClasses>
 			<param>com.github.maquina1995.*</param>
 		</targetClasses>
@@ -74,7 +63,6 @@ class EjemploServiceTest {
 
 	@Test
 	void sumTest() {
-
 		// given
 		int number1 = 5;
 		int number2 = 5;
@@ -85,7 +73,6 @@ class EjemploServiceTest {
 		// then
 		Assertions.assertEquals(number1 + number2, result);
 	}
-
 }
 ```
 
@@ -107,7 +94,7 @@ Enhanced functionality available at https://www.arcmutate.com/
 
 ruta `\target\pit-reports\index.html`
 
-TODO: meter imagen
+![alt text](https://github.com/MaQuiNa1995/mutation-testing/blob/master/imagenesReadme/coverageMutation.png?raw=true)
 
 Si nos fijamos tendremos:
 
@@ -120,7 +107,7 @@ cuando un informe de coverage normal nos daría un 100% ya que pasamos por todas
 
 Como podemos ver en la imagen o viendo el archivo `target\jacoco.exec` que genera el proyecto cuando se ejecuta `mvn test`
 
-TODO: meter imagen
+![alt text](https://github.com/MaQuiNa1995/mutation-testing/blob/master/imagenesReadme/coverage.png?raw=true)
 
 ## Subiendo el coverage
 
@@ -135,7 +122,7 @@ La filosofía del test de mutación es que deberían de fallar los test unitario
 
 Es decir nuestro test de mutación pasa verde cuando el test unitario cuando le mutamos (con lo anteriormente mencionado) falla
 
-El test quedaría así (Se han omitido comentarios aclaratorios si quieres ver que hace cada línea de código ve al archivo: TODO meterArchivo)
+El test quedaría así (Se han omitido comentarios aclaratorios si quieres ver que hace cada línea de código <a href="https://github.com/MaQuiNa1995/mutation-testing/blob/master/src/test/java/com/github/maquina1995/EjemploServiceTest.java">pincha aqui</a>)
 
 ```
 @TestPropertySource(properties = "logging.level.root=INFO")
@@ -184,7 +171,7 @@ Enhanced functionality available at https://www.arcmutate.com/
 
 ### Html
 
-TODO: meter imagen
+![alt text](https://github.com/MaQuiNa1995/mutation-testing/blob/master/imagenesReadme/coverageMutation2.png?raw=true)
 
 De esta manera obtenemos el 100% 
 
