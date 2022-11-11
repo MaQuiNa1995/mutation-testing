@@ -39,15 +39,30 @@ class EjemploServiceTest {
 		// given
 		int number1 = 5;
 		int number2 = 5;
-		String expectedTrace = "Se van a sumar " + number1 + " y " + number2;
 		int expectedSum = number1 + number2;
+		// Se monta la traza que la ejecución dejaría con los números definidos
+		String expectedEndTrace = "[main] INFO com.github.maquina1995.EjemploService - Se van a sumar " + number1
+				+ " y " + number2 + "\r";
 
 		// when
 		int result = this.sut.sum(number1, number2);
 
 		// then
-		Assertions.assertTrue(capture.getOut()
-				.contains(expectedTrace));
+		String[] splitByJumpLines = capture.getOut()
+				.split("\n");
+
+		// verificamos el número de trazas
+		Assertions.assertEquals(1, splitByJumpLines.length);
+		/**
+		 * Obtenemos la 1º traza y verificamos que termine con cierta String
+		 * 
+		 * Esto se hace para evitar el lidiar con la fecha y hora que dejaría la traza
+		 * original
+		 * 
+		 * <code>01:43:13.717 [main] INFO com.github.maquina1995.EjemploService - Se van a sumar 5 y 5</code>
+		 */
+		Assertions.assertTrue(splitByJumpLines[0].endsWith(expectedEndTrace));
+		// hacemos el assertion típico del resultado esperado
 		Assertions.assertEquals(expectedSum, result);
 	}
 

@@ -141,14 +141,18 @@ class EjemploServiceTest {
 		// given
 		int number1 = 5;
 		int number2 = 5;
-		String expectedTrace = "Se van a sumar " + number1 + " y " + number2;
 		int expectedSum = number1 + number2;
+		String expectedEndTrace = "[main] INFO com.github.maquina1995.EjemploService - Se van a sumar " + number1
+				+ " y " + number2;
 
 		// when
 		int result = this.sut.sum(number1, number2);
 
 		// then
-		Assertions.assertTrue(capture.getOut().contains(expectedTrace));
+		Assertions.assertEquals(1, capture.getOut()
+				.split("\n").length);
+		Assertions.assertTrue(capture.getOut()
+				.split("\n")[0].endsWith(expectedEndTrace));
 		Assertions.assertEquals(expectedSum, result);
 	}
 }
